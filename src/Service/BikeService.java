@@ -3,6 +3,7 @@ package Service;
 import Model.Bike;
 import Exception.BikeAlreadyExistedException;
 import Exception.BikesnotAvailableException;
+import Exception.BikeNotFoundException;
 import java.util.ArrayList;
 
 public class BikeService {
@@ -24,8 +25,34 @@ public class BikeService {
         if(bikes.isEmpty()){
             throw new BikesnotAvailableException("Bike not Available");
         }
-        for(Bike bike : bikes){
-            System.out.println(bike);
+            for(Bike bike : bikes){
+                System.out.println(bike);
+            }
         }
+
+        public void rentBike(int bikeId) throws BikesnotAvailableException, BikeNotFoundException {
+
+            boolean found = false;
+
+            for(Bike bike : bikes){
+
+                if(bike.getBikeId() == bikeId){
+                    found = true;
+
+                    if(bike.isAvailable()){
+                        bike.setAvailable(false);
+                        System.out.println("Bike rented Successfully");
+                    }
+                    else{
+                        throw new BikesnotAvailableException("Bike already rented");
+                    }
+                }
+            }
+
+            if(!found){
+                throw new BikesnotAvailableException("Bike Id not Found");
+            }
+
+
     }
 }

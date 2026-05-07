@@ -2,6 +2,7 @@ package Main;
 
 import Exception.BikeAlreadyExistedException;
 import Exception.BikesnotAvailableException;
+import Exception.BikeNotFoundException;
 import Model.Bike;
 import Service.BikeService;
 
@@ -21,12 +22,13 @@ public class MainIndex {
 //            bikeService.addBike(bike1);
             bikeService.addBike(bike3);
 
+            bikeService.rentBike(102);
+
             bikeService.viewBike();
         }
-        catch (BikeAlreadyExistedException | BikesnotAvailableException e){
+        catch (BikeAlreadyExistedException | BikesnotAvailableException | BikeNotFoundException e){
             System.out.println(e.getMessage());
         }
-
 
     }
 }
