@@ -4,6 +4,7 @@ import Model.Bike;
 import Exception.BikeAlreadyExistedException;
 import Exception.BikesnotAvailableException;
 import Exception.BikeNotFoundException;
+import Exception.BikeReturnedAvaialbleException;
 import java.util.ArrayList;
 
 public class BikeService {
@@ -30,7 +31,8 @@ public class BikeService {
             }
         }
 
-        public void rentBike(int bikeId) throws BikesnotAvailableException, BikeNotFoundException {
+        public void rentBike(int bikeId) throws BikesnotAvailableException,
+                BikeNotFoundException {
 
             boolean found = false;
 
@@ -52,7 +54,28 @@ public class BikeService {
             if(!found){
                 throw new BikesnotAvailableException("Bike Id not Found");
             }
+    }
 
+    public void returnBike(int bikeId) throws BikeReturnedAvaialbleException, BikesnotAvailableException {
+
+            boolean returned = false;
+
+            for(Bike bike : bikes ){
+
+                if(bike.getBikeId() == bikeId){
+                    returned = true;
+
+                    if(!bike.isAvailable()){
+                        bike.setAvailable(true);
+                        System.out.println("Bike Returned Successfully");
+                    }else{
+                        throw new BikeReturnedAvaialbleException("Bike Returned, so Bike is Available");
+                    }
+                }
+            }
+            if(!returned){
+                throw new BikesnotAvailableException("Bike is not returned");
+            }
 
     }
 }
