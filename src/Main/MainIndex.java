@@ -8,7 +8,7 @@ import Service.BikeService;
 
 
 public class MainIndex {
-    static void main(String[] args) {
+    static void main(String[] args) throws BikesnotAvailableException {
 
         BikeService bikeService = new BikeService();
         System.out.println("Adding Bike:");
@@ -22,13 +22,18 @@ public class MainIndex {
 //            bikeService.addBike(bike1);
             bikeService.addBike(bike3);
 
-            bikeService.rentBike(102);
+            bikeService.rentBike(115);
 
-            bikeService.viewBike();
         }
         catch (BikeAlreadyExistedException | BikesnotAvailableException | BikeNotFoundException e){
             System.out.println(e.getMessage());
         }
+       try{
+           bikeService.viewBike();
+       }
+       catch (BikesnotAvailableException e){
+           System.out.println(e.getMessage());
+       }
 
     }
 }
