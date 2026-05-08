@@ -39,6 +39,7 @@ public class MainIndex {
 
        try{
            bikeService.returnBike(101);
+           bikeService.returnBike(101);
        } catch (BikeReturnedAvaialbleException e) {
            System.out.println(e.getMessage());
        }
