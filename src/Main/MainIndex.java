@@ -3,6 +3,7 @@ package Main;
 import Exception.BikeAlreadyExistedException;
 import Exception.BikesnotAvailableException;
 import Exception.BikeNotFoundException;
+import Exception.BikeReturnedAvaialbleException;
 import Model.Bike;
 import Service.BikeService;
 
@@ -28,6 +29,7 @@ public class MainIndex {
         catch (BikeAlreadyExistedException | BikesnotAvailableException | BikeNotFoundException e){
             System.out.println(e.getMessage());
         }
+
        try{
            bikeService.viewBike();
        }
@@ -35,6 +37,11 @@ public class MainIndex {
            System.out.println(e.getMessage());
        }
 
+       try{
+           bikeService.returnBike(101);
+       } catch (BikeReturnedAvaialbleException e) {
+           System.out.println(e.getMessage());
+       }
     }
 }
 
