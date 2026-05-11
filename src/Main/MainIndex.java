@@ -7,9 +7,13 @@ import Exception.BikeReturnedAvaialbleException;
 import Exception.CustomerAlreadyExistedException;
 import Exception.CustomerNotFoundException;
 import Model.Bike;
+import Model.Booking;
 import Model.Customer;
 import Service.BikeService;
+import Service.BookingService;
 import Service.CustomerService;
+
+import java.time.LocalDate;
 
 
 public class MainIndex {
@@ -17,6 +21,7 @@ public class MainIndex {
 
         BikeService bikeService = new BikeService();
         CustomerService customerService = new CustomerService();
+        BookingService bookingService = new BookingService();
 
         System.out.println("Adding Bike:");
         Bike bike1 = new Bike(101, "Royal GT", "GT650", 650, true);
@@ -25,6 +30,17 @@ public class MainIndex {
 
         Customer customer1 = new Customer(1, "Akash", "9876543210");
         Customer customer2 = new Customer(2, "Vijay", "9876543211");
+        Customer customer3 = new Customer(3, "Vishnu", "9632581470");
+
+
+        Booking booking1 = new Booking(1, customer1, bike1, LocalDate.now());
+        Booking booking2 = new Booking(2, customer2, bike2, LocalDate.now());
+        Booking booking3 = new Booking(3, customer3, bike3, LocalDate.now());
+
+        bookingService.addBooking(booking1);
+        bookingService.addBooking(booking2);
+        bookingService.addBooking(booking3);
+        bookingService.viewBookings();
 
         try {
             bikeService.addBike(bike1);
@@ -59,6 +75,7 @@ public class MainIndex {
         } catch (CustomerAlreadyExistedException | CustomerNotFoundException e) {
             System.out.println(e.getMessage());
         }
+
     }
 }
 
