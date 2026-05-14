@@ -57,9 +57,7 @@ public class BikeService {
     }
 
     public void returnBike(int bikeId) throws BikeReturnedAvaialbleException, BikesnotAvailableException {
-
             boolean returned = false;
-
             for(Bike bike : bikes ){
 
                 if(bike.getBikeId() == bikeId){
@@ -80,9 +78,7 @@ public class BikeService {
     }
 
     public void searchBikeById(int bikeId) throws BikeNotFoundException {
-
         boolean found = false;
-
         for (Bike bike : bikes) {
             if (bike.getBikeId() == bikeId) {
                 found = true;
@@ -96,9 +92,7 @@ public class BikeService {
         }
     }
     public void searchBikeByBrand(String brand) throws BikeNotFoundException {
-
         boolean found = false;
-
         for (Bike bike : bikes) {
             if (bike.getBrand().equalsIgnoreCase(brand)) {
                 found = true;
@@ -110,9 +104,7 @@ public class BikeService {
         }
     }
     public void viewAvailableBikes() {
-
         boolean found = false;
-
         for (Bike bike : bikes) {
 
             if (bike.isAvailable()) {
@@ -134,6 +126,21 @@ public class BikeService {
         }
         if (!found) {
             System.out.println("No Rented Bikes");
+        }
+    }
+
+    public void removeBike(int bikeId) throws BikeNotFoundException {
+        boolean found = false;
+        for (Bike bike : bikes) {
+            if (bike.getBikeId() == bikeId) {
+                found = true;
+                bikes.remove(bike);
+                System.out.println("Bike Removed Successfully ✅");
+                break;
+            }
+        }
+        if (!found) {
+            throw new BikeNotFoundException("Bike ID Not Found");
         }
     }
 }

@@ -36,6 +36,10 @@ public class Bike {
         return available;
     }
 
+    public void setRentPerDay(double rentPerDay) {
+        this.rentPerDay = rentPerDay;
+    }
+
     public void setAvailable(boolean available) {
         this.available = available;
     }
