@@ -78,4 +78,50 @@ public class BikeService {
             }
 
     }
+
+    public void searchBikeById(int bikeId) throws BikeNotFoundException {
+
+        boolean found = false;
+
+        for (Bike bike : bikes) {
+            if (bike.getBikeId() == bikeId) {
+                found = true;
+                System.out.println(bike);
+            }
+        }
+        if (!found) {
+            throw new BikeNotFoundException(
+                    "Bike ID Not Found"
+            );
+        }
+    }
+    public void searchBikeByBrand(String brand) throws BikeNotFoundException {
+
+        boolean found = false;
+
+        for (Bike bike : bikes) {
+            if (bike.getBrand().equalsIgnoreCase(brand)) {
+                found = true;
+                System.out.println(bike);
+            }
+        }
+        if (!found) {
+            throw new BikeNotFoundException("Bike Brand Not Found");
+        }
+    }
+    public void viewAvailableBikes() {
+
+        boolean found = false;
+
+        for (Bike bike : bikes) {
+
+            if (bike.isAvailable()) {
+                found = true;
+                System.out.println(bike);
+            }
+        }
+        if (!found) {
+            System.out.println("No Available Bikes");
+        }
+    }
 }
