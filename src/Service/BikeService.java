@@ -124,4 +124,16 @@ public class BikeService {
             System.out.println("No Available Bikes");
         }
     }
+    public void viewRentedBikes() {
+        boolean found = false;
+        for (Bike bike : bikes) {
+            if (!bike.isAvailable()) {
+                found = true;
+                System.out.println(bike);
+            }
+        }
+        if (!found) {
+            System.out.println("No Rented Bikes");
+        }
+    }
 }
