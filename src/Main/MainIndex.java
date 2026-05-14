@@ -17,7 +17,7 @@ import java.time.LocalDate;
 
 
 public class MainIndex {
-    static void main(String[] args) throws BikesnotAvailableException {
+    static void main(String[] args) throws BikesnotAvailableException, BikeNotFoundException {
 
         BikeService bikeService = new BikeService();
         CustomerService customerService = new CustomerService();
@@ -75,6 +75,12 @@ public class MainIndex {
         } catch (CustomerAlreadyExistedException | CustomerNotFoundException e) {
             System.out.println(e.getMessage());
         }
+
+        bikeService.removeBike(103);
+
+        bikeService.updateBikeRent(101, 2000);
+
+        bikeService.viewBike();
 
     }
 }

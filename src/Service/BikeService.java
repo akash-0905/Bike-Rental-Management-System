@@ -128,19 +128,39 @@ public class BikeService {
             System.out.println("No Rented Bikes");
         }
     }
-
     public void removeBike(int bikeId) throws BikeNotFoundException {
+
         boolean found = false;
+
         for (Bike bike : bikes) {
             if (bike.getBikeId() == bikeId) {
                 found = true;
+                if (!bike.isAvailable()) {
+                    System.out.println("Cannot Remove Rented Bike");
+                    return;
+                }
                 bikes.remove(bike);
-                System.out.println("Bike Removed Successfully ✅");
-                break;
+                System.out.println("Bike Removed Successfully");
+                return;
             }
         }
         if (!found) {
             throw new BikeNotFoundException("Bike ID Not Found");
         }
     }
+    public void updateBikeRent(int bikeId, double newRentPerDay) throws BikeNotFoundException {
+        boolean found = false;
+        for (Bike bike : bikes) {
+            if (bike.getBikeId() == bikeId) {
+                found = true;
+                bike.setRentPerDay(newRentPerDay);
+                System.out.println("Bike Rent Updated ✅");
+            }
+        }
+        if (!found) {
+            throw new BikeNotFoundException("Bike ID Not Found");
+        }
+    }
+
+
 }
