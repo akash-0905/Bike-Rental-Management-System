@@ -158,21 +158,10 @@ public class BikeService {
         }
     }
 
-    // ============================
-// TOTAL BIKES COUNT
-// ============================
-
     public void totalBikesCount() {
 
-        System.out.println(
-                "Total Bikes : " + bikes.size()
-        );
+        System.out.println("Total Bikes : " + bikes.size());
     }
-
-
-// ============================
-// ESTIMATED REVENUE
-// ============================
 
     public void estimatedRevenue() {
 
@@ -190,11 +179,6 @@ public class BikeService {
                 "Estimated Revenue : ₹" + revenue
         );
     }
-
-
-// ============================
-// MOST EXPENSIVE BIKE
-// ============================
 
     public void mostExpensiveBike()
             throws BikeNotFoundException {
@@ -217,9 +201,7 @@ public class BikeService {
             }
         }
 
-        System.out.println(
-                "\nMost Expensive Bike:"
-        );
+        System.out.println("\nMost Expensive Bike:");
 
         System.out.println(expensiveBike);
     }
@@ -235,7 +217,6 @@ public class BikeService {
         for (Bike bike : bikes) {
 
             if (bike.getRentPerDay() < cheapestBike.getRentPerDay()) {
-
                 cheapestBike = bike;
             }
         }
